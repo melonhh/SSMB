@@ -23,7 +23,7 @@ public class MapToEntityTool {
         Field[] allFields = entityClass.getDeclaredFields();
         String setMethodName;
         String fieldName;
-        Method setMethod = null;
+        Method setMethod;
         for (Field field : allFields) {
             field.setAccessible(true);
             fieldName = field.getName();
@@ -39,7 +39,7 @@ public class MapToEntityTool {
         }
 
         // 把map里的值，放到entity对象里
-        T entity = null;
+        T entity;
         try {
             entity = entityClass.newInstance();
         } catch (Exception e) {
@@ -47,9 +47,9 @@ public class MapToEntityTool {
             return null;
         }
 
-        Object fieldVale = null;
-        Method setM = null;
-        Class<?>[] paramTypes = null;
+        Object fieldVale;
+        Method setM;
+        Class<?>[] paramTypes;
         for (String strFieldName : allFieldList) {
             fieldVale = map.get(strFieldName);
             if (fieldVale == null)
